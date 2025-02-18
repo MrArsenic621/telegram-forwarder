@@ -130,7 +130,8 @@ async def main():
         @client.on(events.NewMessage(chats=forward_from_id))
         async def handler(event):
             print_bidi(f"New message in (ID: {forward_from_id}), forwarding ...")
-            await event.forward_to(forward_to_id)
+            # await event.forward_to(forward_to_id)
+            await client.send_message(forward_to_id,event.message.text)
             print_bidi(f"Forwarded to (ID: {forward_to_id})")
 
         await client.run_until_disconnected()
